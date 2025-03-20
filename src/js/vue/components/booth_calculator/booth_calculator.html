@@ -1,0 +1,87 @@
+
+
+    <div class="booth_calculator" >
+    <v-autocomplete  :rules="rules" :filter="filterBooth" :menu-props="{contentClass:'Calculator_Menu'}" :items="booths"  :item-text="item => boothName(item).name"  :item-value="item => item"  v-model="the_value"  multiple color="primary">
+       
+        <template  v-slot:selection="{ item }">
+            <v-chip  style="font-family: roboto;"  color="primary" close outlined @click:close="removeItemFromListOfItems(item,the_value)" >{{boothName(item).name}}</v-chip>
+        </template>
+
+        <template v-slot:label ><span  v-html="label"></span></template>
+
+           
+
+        <template v-slot:prepend-item>
+            <div v-if="the_value.length<2" class="justify-center" style="text-align:center">
+                <v-chip color="primary" outlined style="font-size:80%" >
+                    {{lang=='ar'?'يمكنك اختيار أكثر من جناح ' :'For a bigger Booth you can select more than one unit'}}
+                
+                </v-chip>
+            </div>
+        </template>
+
+    </v-autocomplete>
+
+    <v-card elevation="0" outlined shaped tile  v-for="_booth in the_value" :key="boothName(_booth).name">
+        <v-card-text>
+            <v-row>
+                <v-col  class="justify-center" style="text-align:center">
+                    <div style="font-family: roboto;direction:ltr;font-weight:bold;font-size:120%"  class="primary--text">{{boothName(_booth).name}} </div>
+                    <v-chip outlined :color="_booth.type=='Standard'?null:'primary'" small>{{_booth.category}}</v-chip>
+                </v-col>
+                <v-col class="justify-center" style="text-align:center">
+
+                    <span style="display:inline-block;white-space: nowrap;" v-if="_booth.width.startsWith('Area')">({{_booth.width}})</span>
+                    <span style="display:inline-block;white-space: nowrap;" v-else  :style="{fontSize:lang=='ar'?'120%':null}">({{_booth.width}}{{lang=='ar'?'م' :'m'}} &times; {{_booth.height}}{{lang=='ar'?'م' :'m'}}) </span>
+
+                    <br/>
+                    <span style="display:inline-block;white-space: nowrap;font-family: roboto;font-size:65%;font-weight:bold">{{ShellOrSpace(_booth)}}</span>
+                </v-col>
+                <v-col class="justify-right" style="text-align:right">
+                    <v-chip color="primary"  v-if="getPrice(_booth)" label outlined><span :style="{fontSize:lang=='ar'?'130%':null}">{{numberWithCommas(getPrice(_booth))}} </span> &nbsp; {{lang=='ar'?'دينار كويتي' :'KD'}} </v-chip>
+                    <div v-if="!getPrice(_booth)" style="text-align:center">
+                        <span class="font-size:70%">{{lang=='ar'?'اتصل ب FEC' :'Contact FEC '}}</span><br/>
+                            <v-chip color="primary" outlined label>
+                                <v-icon left>mdi-whatsapp</v-icon>
+                                <a target="_blank" href="https://api.whatsapp.com/send?phone=96593333685"  style="text-decoration: none;" class="primary--text">93333685</a>
+                            </v-chip>
+                    </div>
+                </v-col>
+            </v-row>
+
+        </v-card-text>
+    </v-card>
+
+
+    <v-card  class="Total Value primary" elevation="2" outlined shaped tile v-if="canCalculatePriceForAllBooth(the_value)"  >
+      <v-card-text>
+        <v-row>
+            <v-col  class="justify-center" style="text-align:center">
+                <v-chip style="font-weight:bold;font-size:120%"  outlined color="white">
+                    <span class='EN_Text'>Total</span>
+                    <span class='AR_Text'>المجموع</span>
+                </v-chip>
+                
+            </v-col>
+            <v-col>
+                
+            </v-col>
+            <v-col>
+                <v-chip style="font-weight:bold;font-size:150%"  outlined color="white">{{numberWithCommas(total_price(the_value))}}<span class='EN_Text'>  &nbsp; KD </span><span class='AR_Text'>&nbsp;دينار كويتي </span></v-chip>
+            </v-col>
+        </v-row>
+     </v-card-text>
+    </v-card>
+        
+    </div>
+
+
+
+    
+
+
+
+
+    
+
+

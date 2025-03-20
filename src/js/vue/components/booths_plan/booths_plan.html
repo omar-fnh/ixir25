@@ -1,0 +1,104 @@
+
+
+    <div :id="id" class="booths_plan" style="direction:ltr;overflow:hidden;position:relative;touch-action: none;">
+        <!--div style="position:absolute;top:0px;left:0px;z-index:999">zoom:{{zoom.value}} , prev zoom: {{zoom.prev}}</div-->
+
+        <div  id="plan_img_container" class="plan_img_container" style="position:relative;" :style="{width:width*zoom.value+'%',left:left+'px',top:top+'px'}" >
+
+                <svg width="820pt" height="1276pt" version="1.1" viewBox="0 0 820.89 1276"  style="position:absolute;left:0px;top:-3px;width:100%;height:100%">
+
+                      <g  v-for="booth in booths" :key="boothName(booth).name"> 
+                            <path   :id="boothName(booth).name" :stroke-width="1+(2/zoom.value)+'px'"  :class="[booth.type,{ reserved:booth.reserved,selected: isBoothSelected(boothName(booth).name) }]"  class="SVG_Booth"  @dblclick="add_booth_toChoices(booth)"  @mousemove='show($event,booth)' @touchend="show($event,booth)" @click='show($event,booth)'
+                                :d="booth.path" /> 
+
+                                <g >
+                                <path  class="x_in_Booth"  v-if="booth.reserved" :d="createXPathinBoth(booth)"  /> 
+
+                                <path   v-if="showThisBooth==booth.company" id="showThisBooth"     class="SVG_Booth"     :d="booth.path" />
+                                </g>
+
+                      </g>
+
+
+
+                </svg>
+
+
+                <img :src="img"    style="width:100%;height:auto;"  />
+                        
+        </div>
+
+
+        <div  class="map_zoom_container" style="padding-top:13px;padding-bottom:13px;border-radius:5px;background-color:rgba(255,255,255,.8);border:1px solid rgba(0,0,0,0.5);right:10px;bottom:15px;width:30;display:flex;flex-direction: column-reverse;" > 
+                   
+                
+                <v-slider    append-icon="mdi-plus" 
+                
+                prepend-icon="mdi-minus"
+                @click:append="zoomIn"
+                @click:prepend="zoomOut"
+                @input="zoomInOut"
+                track-color="gray"  thumb-color="primary"  track-fill-color='primary'  :value="zoom.value" max="10" step="0.25" min="1" vertical color="purple" style="flex:0;justify-content: center;max-height:200px"></v-slider>
+                
+        </div>
+
+
+
+        <v-menu v-model="menu.visible":position-x="menu.x" :position-y="menu.y" absolute offset-y>
+      
+
+
+            <v-card elevation="2" outlined shaped tile v-if="menu.visible" max-width="170" color="rgba(255,255,255,0.75)"  style="backdrop-filter:blur(10px)" >
+                    <v-card-text  >
+                        <v-row>
+                            <v-col  class="justify-center" style="text-align:center">
+                              
+                                <v-img v-if="selected_booth.company!='' && selected_booth.online" :src="'images/logos/'+selected_booth.image" style="width:120px;height:120px;margin:auto;" class="justify-center"></v-img>
+                                <div   style="font-family:roboto;font-weight:bold;font-size:120%"  >{{boothName(selected_booth).name}} </div>
+                                <div  v-if="selected_booth.company!='' && selected_booth.online "  style="font-family:roboto;font-weight:bold;font-size:120%"  ><a target="_blank" :href="'https://instagram.com/'+selected_booth.link">{{selected_booth.company}}</a></div>
+    
+                                <v-chip  v-if="selected_booth.company=='' || selected_booth.online==false" style="font-family:roboto;font-weight:bold" outlined :color="categoryColor" small>{{selected_booth.category}}</v-chip>
+                            </v-col>
+                            <v-col class="justify-center" style="text-align:center" v-if="selected_booth.company==''">
+            
+                                <div >
+                                    <span  style="display:inline-block;white-space: nowrap;"v-if="selected_booth.width.startsWith('Area')">( {{selected_booth.width}} )</span>
+                                    <span  style="display:inline-block;white-space: nowrap;" v-else >({{selected_booth.width}}{{lang=='ar'?'م':'m'}} &times; {{selected_booth.height}}{{lang=='ar'?'م':'m'}}) </span>
+                                </div>
+                                <span v-if="selected_booth.company=='' || selected_booth.online==false" style="display:inline-block;white-space: nowrap;font-size:65%;font-weight:bold;font-family:roboto;border:1px solid rgb(102, 102, 102); background-color:rgb(102, 102, 102);color:white;padding:3px;border-radius:3px; line-height: normal;">{{ShellOrSpace(selected_booth)}}</span>
+                                <!--div v-if="getPrice(selected_booth) && !selected_booth.reserved" style="font-weight:bold;font-size:120%;padding-top:8px">{{getPrice(selected_booth,true)}} KD</div-->
+                            </v-col>
+                        </v-row>
+                    </v-card-text>
+    
+                    <v-card-actions  v-if="selected_booth.company=='' &&  selected_booth.reserved==false">
+                            <v-spacer></v-spacer>
+                           
+                            <v-btn v-if="addToChoices(selected_booth)" :color="categoryColor" outlined   @click="()=>{menu.visible = false;currentchoices.push(selected_booth)}">
+                                <span class='EN_Text'>Add</span>
+                                <span class='AR_Text'>أضف</span>
+                            </v-btn>
+                            <v-btn v-if="!addToChoices(selected_booth)" :color="categoryColor" outlined   @click="()=>{menu.visible = false;remove_item(selected_booth)}">
+                                <span class='EN_Text'>Remove</span>
+                                <span class='AR_Text'>احذف</span>
+                                
+                            </v-btn>
+                    </v-card-actions>
+            </v-card>
+      </v-menu>
+
+
+
+        
+    </div>
+
+
+ 
+
+
+
+
+
+    
+
+

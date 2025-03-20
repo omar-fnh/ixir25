@@ -1,0 +1,299 @@
+
+<v-row style="margin-top:20px" align="center" justify="center">
+
+    <v-col cols="12"  md="7"  class="mb-2">
+        <v-card elevation="0" outlined   >
+            <v-card-text>
+                <v-text-field validate-on-blur required :rules="rules.company_name" v-model="exform.company.name"  :label="exform.language=='en'?'Company Name':'اسم الشركة بالإنجليزية'" outlined clearable ></v-text-field> 
+                <v-text-field validate-on-blur required :rules="rules.company_name_ar" v-model="exform.company.name_ar"  :label="exform.language=='en'?'Company Name in Arabic':'اسم الشركة بالعربية'" outlined clearable ></v-text-field> 
+                <v-checkbox  :label="exform.language=='en'?'Brand Name different from above':'اسم العلامة التجارية مختلفة'" v-model="exform.company.brand.different"></v-checkbox>
+                <v-text-field  validate-on-blur :rules="rules.brand" v-if="exform.company.brand.different" v-model="exform.company.brand.name"  :label="exform.language=='en'?'Brand Name':'اسم العلامة التجارية'" outlined clearable ></v-text-field>
+
+
+            </v-card-text>
+        </v-card>
+    </v-col>
+    <v-col cols="12" md="5"  class="mb-2 " >
+        <v-card elevation="0" outlined  >
+            <v-card-text>
+                <v-text-field validate-on-blur required  :rules="rules.contact_name" prepend-icon="mdi-account-circle" v-model="exform.contact.name"  :label="exform.language=='en'?'Contact Name':'الاسم'" ></v-text-field> 
+                <v-text-field validate-on-blur  required :rules="rules.contact_designation" prepend-icon="mdi-briefcase-variant-outline" v-model="exform.contact.designation"  :label="exform.language=='en'?'Designation':'الوظيفة'" ></v-text-field> 
+                <v-text-field validate-on-blur required :rules="rules.contact_email" prepend-icon="mdi-email-open-outline" v-model="exform.contact.email"  :label="exform.language=='en'?'Email':'البريد الإلكتروني'" ></v-text-field>
+            </v-card-text>
+        </v-card>
+    </v-col>
+
+
+
+</v-row>
+
+
+
+<v-row>
+    <v-col cols="12"  md="12">
+         <v-text-field validate-on-blur :rules="rules.company_address" prepend-icon="mdi-map-marker-outline" v-model="exform.address"  :label="exform.language=='en'?'Company Address':'عنوان الشركة'" ></v-text-field> 
+    </v-col>
+
+    <v-col cols="12"  md="6">
+            <v-text-field   prepend-icon="mdi-earth" v-model="exform.website"  :label="exform.language=='en'?'Website':'الموقع الإلكتروني'" ></v-text-field> 
+     </v-col>
+
+     <v-col cols="12"  md="6">
+            <v-text-field  validate-on-blur :rules="rules.instagram" prepend-icon="mdi-instagram" v-model="exform.instagram" :label="exform.language=='en'?'Instagram':'إنستجرام'" ></v-text-field> 
+     </v-col>
+        
+
+    <v-col cols="12"  md="6">
+        <v-text-field validate-on-blur class="phone_number" :rules="rules.phone"  prepend-icon="mdi-phone" v-model="exform.phone"   :label="exform.language=='en'?'Phone':'الهاتف'" ></v-text-field> 
+    </v-col>
+
+    <v-col cols="12"  md="6">
+        <v-text-field validate-on-blur  class="phone_number" :rules="rules.phone" prepend-icon="mdi-cellphone" v-model="exform.mob"   :label="exform.language=='en'?'Mob':'الموبيل'" ></v-text-field> 
+    </v-col>
+
+    
+</v-row>
+
+
+<!--=include correspondence.html -->
+<!--=include categories.html -->
+
+<!--=include booth_reservations.html -->
+<br/>
+<v-row align="center" justify="center" >
+    <!--v-alert color="secondary" outlined  icon="mdi-information" style="font-size:78%"   >
+        <span class='EN_Text'>
+            Select the Booth in order of preference.: (in case of booth unavailability, allotment will be based on your selection preference)<br/>
+            Indicate number as shown in the plan above -you can select multiple booths if you wish to merge them<br/> 
+        </span>
+		<span class='AR_Text'>
+            حدد الجناح بالترتيب المفضل: (في حالة عدم توفر الجناح ، سيعتمد التخصيص على تفضيلات اختيارك)
+            حدد الرقم كما هو موضح في المخطط أعلاه - يمكنك تحديد أجنحة متعددة إذا كنت ترغب في دمجها معا
+        </span>
+        
+        </v-alert-->
+        </v-row>
+        <v-row>
+
+    <!--v-col cols="12" md="12"  v-if="showPlan=='Mezzanine' ||showPlan=='Ground'"-->
+        <v-col cols="12" md="12" >
+        <v-card  :color="currentchoices=='booths1'?'primary lighten-5':'blue-grey lighten-5'" theme="dark" outlined>
+            <v-card-text>
+                <!--booth-calculator :plan="showPlan" :rules="rules.choices"  v-model="exform.booths1" :booths="availbleBooths"  :lang="exform.language" :label="exform.language=='en'?'<span>Select Your Booth</span>':'اختر جناحك'"></booth-calculator-->
+                <booth-calculator plan="Ground" :rules="rules.choices"  :prebooked="exform.prebooked" v-model="exform.booths1" :booths="availbleBooths"  :lang="exform.language" :label="exform.language=='en'?'<span>Select Your Booth</span>':'اختر جناحك'"></booth-calculator>
+            </v-card-text>
+        </v-card>
+    </v-col>
+
+    <!--v-col cols="12" md="6" @click="currentchoices='booths2'">
+        <v-card :color="currentchoices=='booths2'?'primary lighten-5':'blue-grey lighten-5'" outlined >
+            <v-card-text>
+                <booth-calculator :rules="rules.choices" v-model="exform.booths2" :booths="availbleBooths":lang="exform.language"  :label="exform.language=='en'?'<span>2<sup>st</sup> Choice </span>':'الاختيار الثاني'"></booth-calculator>
+            </v-card-text>
+        </v-card>
+    </v-col-->
+
+</v-row>
+
+<v-row>
+
+
+    <v-col cols="12"  class="mb-2">
+        <v-card elevation="0" outlined   >
+            <v-card-title>
+                <span class='EN_Text'>Required Documents</span>
+                <span class='AR_Text'>المستندات المطلوبة</span>
+            </v-card-title>
+            <v-card-text>
+
+                <v-file-input v-if="is_food_and_beverage"
+                    v-model="exform.files.company_profile.file"  
+                    :loading="exform.files.company_profile.status=='loading'"  
+                    @click:clear="exform.files.company_profile.status=null"
+                    ref="company_profile" 
+                    @change="uploadFile('company_profile')" 
+                    :rules="rules.doc" 
+                    :label="exform.language=='en'?'Company Profile':'بروفايل الشركة'"   
+                    accept="image/*,.doc,.docx,.pdf,.zip"   
+                    :append-outer-icon="exform.files.company_profile.status=='loaded'?'mdi-checkbox-marked':null"  
+                     clearable>
+                </v-file-input> 
+
+
+
+                <v-file-input 
+                    v-model="exform.files.company_license.file"  
+                    :loading="exform.files.company_license.status=='loading'"  
+                    @click:clear="exform.files.company_license.status=null"
+                    ref="company_license" 
+                    @change="uploadFile('company_license')" 
+                    :rules="rules.doc" 
+                    :label="exform.language=='en'?'Company License':'الرخصة التجارية'"   
+                    accept="image/*,.doc,.docx,.pdf,.zip"   
+                    :append-outer-icon="exform.files.company_license.status=='loaded'?'mdi-checkbox-marked':null"  
+                     clearable>
+                </v-file-input> 
+
+                <v-file-input
+                    v-model="exform.files.authorized_signatory.file" 
+                    :loading="exform.files.authorized_signatory.status=='loading'" 
+                    @click:clear="exform.files.authorized_signatory.status=null"
+                    ref="authorized_signatory" 
+                    @change="uploadFile('authorized_signatory')" 
+                    :rules="rules.doc"  
+                    :label="exform.language=='en'?'Authorized Signatory':'تفويض التوقيع'"  
+                    accept="image/*,.doc,.docx,.pdf,.zip"
+                    :append-outer-icon="exform.files.authorized_signatory.status=='loaded'?'mdi-checkbox-marked':null" 
+                    prepend-icon="mdi-file-sign" 
+     
+                    clearable>
+                </v-file-input> 
+
+                <v-file-input 
+                    v-model="exform.files.civil_id.file"   
+                    :loading="exform.files.civil_id.status=='loading'"
+                    @click:clear="exform.files.civil_id.status=null"
+                    ref="civil_id" 
+                    @change="uploadFile('civil_id')" 
+                    :rules="rules.doc" 
+                    :label="exform.language=='en'?'Civil ID of Authorized Signatory':'البطاقة المدنية للمفوّض بالتوقيع'"   
+                    accept="image/*,.doc,.docx,.pdf,.zip" 
+                    :append-outer-icon="exform.files.civil_id.status=='loaded'?'mdi-checkbox-marked':null"
+                    prepend-icon="mdi-card-account-details"    
+                    clearable>
+                </v-file-input> 
+
+                <v-file-input 
+                    v-model="exform.files.logo.file" 
+                    :loading="exform.files.logo.status=='loading'" 
+                    @click:clear="exform.files.logo.status=null"
+                    ref="logo" 
+                    @change="uploadFile('logo')" 
+                    :rules="rules.doc" 
+                    :label="exform.language=='en'?'Logo':'العلامة التجارية للشركة لوغو '" 
+                    accept="image/*,.pdf,.ai,.zip"
+                    :append-outer-icon="exform.files.logo.status=='loaded'?'mdi-checkbox-marked':null"
+                    prepend-icon="mdi-image"    
+                    clearable>
+                </v-file-input> 
+
+
+            </v-card-text>
+        </v-card>
+    </v-col>
+</v-row>
+
+<v-row>
+    <v-col cols="12"  md="12">
+        <label>
+            <span class='EN_Text'>Accepted Payment Methods</span>
+            <span class='AR_Text'>طريقة الدفع </span>
+        </label>
+        <v-select  :rules="rules.payment_methods" :item-text="exform.language=='en'?'en':'ar'" item-value="en" :items="[{en:'Cash',ar:'نقدي'},{en:'Online Payment (via link)',ar: 'الدفع عبر الإنترنت (عبر رابط)'},{en:'Cheque',ar:'شيك مصرفي'},{en:'Bank Transfers',ar:'تحويل بنكي'} ]" v-model="exform.selectedPaymentMethod"></v-select>
+        
+    </v-col>
+    <v-col   v-if="exform.selectedPaymentMethod=='Bank Transfers'">
+        <div style="direction:ltr;font-family:roboto;text-align:left;padding:15px;border:1px solid rgba(0,0,0,.57); " class="primary lighten-5">
+            <label style="color:#555">Bank : </label><b class="primary--text">GULF BANK</b><br/>
+            <label style="color:#555">Account owner : </label><b class="primary--text">Fouz Expos Company for Organizing Exhibitions, Conferences and Camps.</b><br/>
+            <label style="color:#555">Account Number : </label><b class="primary--text"  style="direction:ltr;font-family:roboto"> 37396677</b><br/>
+            <label style="color:#555;direction:ltr;font-family:roboto">IBAN : </label><b class="primary--text" > KW82 GULB 0000 0000 0000 0037 396677</b><br/>
+        </div>
+    </v-col>
+
+</v-row>
+
+
+ 
+<v-row>
+    <h3 style="text-decoration:underline">
+        <span class='EN_Text'>Terms :</span>
+        <span class='AR_Text'>الشروط و الأحكام</span>
+    </h3><br/><br/>
+    <ul><br/>
+        <!--li>
+            <span class='EN_Text'>50% Payment due to confirm Booking</span>
+            <span class='AR_Text'> دفع 50٪ لنأكيد الحجز</span>
+        </li>
+        <li>
+            <span class='EN_Text'>50% Payment Due by 22nd of March</span>
+            <span class='AR_Text'> دفع 50٪ بحلول 22 من مارس 2025</span>
+        </li>
+
+        <li>
+            <span class='EN_Text'> Any Registration received on or after 23rd of March -100% payment is due</span>
+            <span class='AR_Text'>أي طلبات يتم استلامها في أو بعد 23  مارس  يجب سداده بالكامل وقت الحجز</span>
+        </li-->
+
+        <li>
+            <span class='EN_Text'>Full payment is due upon booking to confirm the space.</span>
+            <span class='AR_Text'>يجب سداد المبلغ بالكامل عند الحجز لتأكيد المساحة.</span>
+        </li>
+
+
+        <li>
+            <span class='EN_Text'>In case of booking two or more connected booths with different rates - price will be calculated on the higher rate for the entire space</span>
+            <span class='AR_Text'>في حال حجز عدة مواقع متصلة بأسعار مختلفة للمتر المربع - يتم احتساب جميع المساحات على السعر الأعلى</span>
+        </li>
+
+        
+        <li>
+            <span class='EN_Text'>  Cancellations on or before March  21st will receive a full refund</span>
+            <span class='AR_Text'>في حالة الإلغاء في أو قبل 21 مارس سيتم استرداد كامل المبلغ </span>
+        </li>
+
+        <li>
+            <span class='EN_Text'>NO REFUNDS for cancellations   on or after 22nd of March </span>
+            <span class='AR_Text'>لا يتم استرداد اي جزء من المبلغ في حالة الإلغاء في أو بعد 22 مارس   </span>
+
+        </li>
+        <li>
+            <span class='EN_Text'>Ensure your information is accurate and your documents are complete when you submit this form</span>
+            <span class='AR_Text'>تأكد من دقة معلوماتك وإكمال مستنداتك عند إرسال هذا النموذج</span>
+            
+        </li>
+    </ul>
+
+</v-row>
+
+
+
+<v-row>
+    <v-col cols="12"  md="6">
+        <v-btn color="primary" type="submit" @click="valideForm">
+            <span class='EN_Text'>submit</span>
+            <span class='AR_Text'> إرسال</span>
+
+            </v-btn>
+    </v-col>
+</v-row>
+
+
+<v-dialog v-model="accept_dialog" persistent   width="auto" max-width="1000">
+    <v-card>
+        <v-card-text >
+            <!--=include accept_dialog.html -->
+        </v-card-text>
+        <v-card-actions>
+            <v-spacer></v-spacer>
+                <v-btn color="primary" variant="text" @click="accept_dialog = false">
+                    <span class='EN_Text'>Disagree</span>
+                    <span class='AR_Text'> أرفض</span></v-btn>
+                </v-btn>
+                <v-btn color="primary" variant="text" @click="sendForm">
+                    <span class='EN_Text'>Agree</span>
+                    <span class='AR_Text'> موافق</span></v-btn>
+          </v-card-actions>
+    </v-card>
+</v-dialog>
+
+
+
+<v-dialog v-model="server_send_dialog" persistent   width="auto">
+    <v-card>
+        <v-card-text>
+            <!--=include server_send_dialog.html -->
+        </v-card-text>
+        
+    </v-card>
+</v-dialog>

@@ -1,0 +1,69 @@
+<v-container  v-if="form_sent!='sent' && form_sent!='error'">
+    <v-row class="fill-height" align-content="center" justify="center">
+
+        <v-col cols="12" class="text-subtitle-1 text-center">
+            <span class='EN_Text'>Data is being sent</span>
+            <span class='AR_Text'>جاري إرسال البيانات</span>   
+        </v-col>
+      
+      <v-col cols="8">
+        <v-progress-linear  color="primary" indeterminate rounded height="12"></v-progress-linear>
+      </v-col>
+
+      <v-col class="text-subtitle-1 text-center"cols="12">
+        <span class='EN_Text'>Please Wait... </span>
+        <span class='AR_Text'>برجاء الانتظار ...</span>   
+     </v-col>
+
+    </v-row>
+  </v-container>
+  <!-------------------------- sent to Server--------------------------------->
+  <v-container  v-if="form_sent=='sent'">
+    <v-row class="fill-height" align-content="center" justify="center">
+
+        <v-col cols="12" class="text-subtitle-1 text-center">
+            <span class='EN_Text'>Thank you for registering with IXIR 2025 Exhibition.</span>
+            <span class='AR_Text'>شكرا لك على التسجيل في معرض إكسير 2025.</span>   
+        </v-col>
+      
+
+
+      <v-col class="text-subtitle-1 text-center"cols="12">
+        <span class='EN_Text'>One of our representatives will contact you within 3 working days.</span>
+        <span class='AR_Text'>سيقوم احد مندوبينا بالاتصال بك في غضون  3 أيام عمل.</span>   
+     </v-col>
+     <v-col align="center" justify="center">
+      <v-btn onclick="location.href='https://ixirexpo.com'">
+        <span class='EN_Text'>Close</span>
+        <span class='AR_Text'>إغلاق</span>  
+      </v-btn>
+     </v-col>
+
+    </v-row>
+  </v-container>
+ <!------------------------- error ------------------------------------>
+  <v-container  v-if="form_sent=='error'">
+    <v-row class="fill-height" align-content="center" justify="center">
+
+        <v-col cols="12" class="text-subtitle-1 text-center">
+            <span class='EN_Text'>can’t connect to server</span>
+            <span class='AR_Text'>لا يمكن الاتصال بالخادم</span>   
+        </v-col>
+      
+
+
+      <v-col class="text-subtitle-1 text-center"cols="12">
+        <span class='EN_Text'>Please Try Again later </span>
+        <span class='AR_Text'>الرجاء معاودة المحاولة في وقت لاحق</span>   
+     </v-col>
+     <v-col align="center" justify="center">
+      <v-btn @click="sendForm">
+        <span class='EN_Text'>Try Again</span>
+        <span class='AR_Text'>حاول مرة أخري</span>  
+      </v-btn>
+     </v-col>
+
+    </v-row>
+  </v-container>
+
+

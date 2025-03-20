@@ -1,0 +1,31 @@
+#selectCategories .v-select__selections{margin-top:10px}
+
+.v-autocomplete__content .theme--light.v-subheader {
+    color:#252d43;
+    font-size:100%;
+    font-weight:bold
+  }
+
+
+  .v-autocomplete__content  .v-list-item.v-list-item--link {
+    display:inline-flex; 
+    border: 1.5px solid #d9d9d9;
+    border-radius: 20px;
+    margin: 2px 2px;
+    background-color:white
+  }
+
+  .v-autocomplete__content .v-list-item--link::before{border-radius: 20px;
+    border: 1px solid #a87274;}
+
+
+    .theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
+      box-shadow: 2px 2px 2px rgba(221, 221, 221, 0.5);
+    }
+
+
+    .v-autocomplete__content .theme--light.v-list {background: #fbfbfb}
+    .v-divider{margin-top: 5px;margin-bottom: 5px;}
+
+   .v-application  .v-autocomplete__content .v-list-item__avatar:first-child{margin:0px}
+    

@@ -1,0 +1,29 @@
+<v-row>
+    <v-col cols="12"  >
+        <v-card >
+            
+            <v-container >
+                <v-checkbox v-model="exform.contact2"  :label="exform.language=='en'?'Add a contact for All Exhibit Correspondence  (if different than above)':'أضف جهة اتصال لجميع مراسلات المعارض (إذا كانت مختلفة عما ورد أعلاه)'"></v-checkbox>
+                <v-row v-if="exform.contact2" elevation="2">
+                    
+                    <v-col cols="12" md="6" >
+                        <v-text-field   prepend-icon="mdi-account-circle" v-model="exform.correspondence.name"  :label="exform.language=='en'?'Contact Name':'جهة الإتصال'" ></v-text-field> 
+                    </v-col>
+
+                    <v-col cols="12" md="6">
+                        <v-text-field  prepend-icon="mdi-briefcase-variant-outline" v-model="exform.correspondence.designation"  :label="exform.language=='en'?'Designation':'الوظيفة'" ></v-text-field> 
+                    </v-col>
+
+                    <v-col cols="12"  md="6">
+                        <v-text-field  prepend-icon="mdi-email" v-model="exform.correspondence.email"  :label="exform.language=='en'?'Email':'البريد الإلكتروني'" ></v-text-field> 
+                    </v-col>
+
+                    <v-col cols="12"  md="6">
+                        <v-text-field  class="phone_number"  prepend-icon="mdi-cellphone" v-model="exform.correspondence.mob"  :label="exform.language=='en'?'Mob':'الموبيل'" ></v-text-field> 
+                    </v-col>
+
+                </v-row>
+            </v-container>
+        </v-card>
+    </v-col> 
+</v-row>

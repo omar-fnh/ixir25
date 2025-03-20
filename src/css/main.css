@@ -1,0 +1,75 @@
+	 
+	@font-face {
+	 font-family: 'GE SS Text Light';
+	 src: url('fonts/GE SS Text Light.woff') format("woff"), url('fonts/GE SS Text Light.woff2') format("woff2"), url('fonts/GE SS Text Light.ttf') format("ttf");
+	 font-weight: normal;
+font-style: normal;
+   }
+
+	
+	html,body{height:100vh;background-color: #fafafa;margin:0px;}
+	[v-cloak]{display:none}
+
+
+	#app.langAR  .phone_number input{direction:ltr;text-align: right;}
+
+	#app .v-file-input .v-input__icon--append-outer i.v-icon {color:rgb(159, 100, 102);}
+
+	#app.langEN {font-family: 'Roboto', sans-serif;}
+	#app.langEN .EN_Text{display:initial}
+	#app.langEN .AR_Text{display:none!important}
+	
+
+	#app.langAR.v-application {font-family: "GE SS Text Light"!important;}
+	#app.langAR .AR_Text{display:initial;font-family: "GE SS Text Light"!important;}
+	#app.langAR .EN_Text{display:none!important}
+
+	#app.langAR {direction:rtl}
+	
+	.v-list-item__title{font-family:roboto}
+
+	.booths_plan{aspect-ratio: 1.2;}
+
+	#app.langAR  .map_zoom_container {transform:rotate(180deg)}
+
+	/*    Calculator   */
+	.Calculator_Menu.v-autocomplete__content .v-select-list{width:480px}
+	.v-autocomplete__content .v-select-list {max-width:100%}
+	.v-autocomplete__content .v-list-item__action:first-child{margin-right: 3px;}
+
+
+	/*            Map    */
+	.map_zoom_container{position:absolute}
+	#app.Map .map_zoom_container{position:fixed}	
+ 	#app.Map .booths_plan{width:100%;height:100%} 
+
+/*  SVG  */
+
+	@keyframes dash {
+		0% { stroke-dashoffset: 100; }
+		50% { stroke-dashoffset: 0; }
+		100% {stroke-dashoffset: 100; } 
+		
+	  }
+
+	.SVG_Booth{fill:transparent}
+	.x_in_Booth{stroke:rgba(0,0,0,.5);stroke-width: 1.5 px;stroke-linecap:round;transform-box: fill-box;transform:scale(0.75) ;transform-origin:50% 50%; }
+	.SVG_Booth:hover{fill:rgb(159, 100, 102,0.4)}
+	.SVG_Booth.selected{
+		fill:rgb(255, 0, 9,0.4);
+		stroke:rgb(255, 0, 9);
+		stroke-dasharray:5 10;
+		stroke-dashoffset: 90;
+		stroke-width: 3px;
+  		stroke-linecap: round;
+		animation: dash 30s linear forwards infinite;
+	 }
+	.SVG_Booth.Prime.selected{fill:rgb(255, 255, 255,0.4);stroke:rgb(255, 255, 255)}
+	/* .SVG_Booth.reserved {fill:rgba(61, 61, 61, 0.3);} */
+
+
+	
+/*=include ../html/loading/loading.css  */
+/*=include app.css  */
+/*=include title.css  */
+ /*=include  categories.css */

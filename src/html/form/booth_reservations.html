@@ -1,0 +1,51 @@
+<!--v-row id="ixir2025-plan" v-if="showPlan=='Mezzanine' ||showPlan=='Ground'"-->
+<v-row   id="checked_before" style="color:white!important;padding-left:10px;" :style="{backgroundColor:exform.prebooked?'#244d88':'#057150'}">
+    <v-checkbox  color="white" v-model="exform.prebooked"  :label="exform.language=='en'?'The booths were chosen before':'تم اختيار ارقام الأجنحة من قبل'"></v-checkbox>
+</v-row>
+    <v-row id="ixir2025-plan" v-if="!exform.prebooked">   
+    <v-col cols="12"  >
+        <v-card >
+            <v-card-title>
+                <span class='EN_Text'>BOOTH RESERVATIONS </span>
+                <span class='AR_Text'>حجوزات الأجنحة</span>
+ 
+            </v-card-title>
+
+            <v-card-subtitle>
+                <v-alert color="secondary" dark dense  icon="mdi-information" style="font-size:78%" prominent  >
+                    <div class="subtitle-1" style="font-weight:bold">
+                        <span class='EN_Text'>Information provided in this section is subject to Management Approval </span>
+                        <span class='AR_Text'>المعلومات الواردة في هذا القسم تخضع لموافقة الإدارة</span>
+                        
+                    </div>
+                    <ul>
+                        <li>
+                            <span class='EN_Text'>Exhibit space are filled on first-come, first-served basis.</span>
+                            <span class='AR_Text'>يتم حجز المساحات بالمعرض على أساس أسبقية الحجز.</span>
+                        </li>
+
+                        <li>
+                            <span class='EN_Text'>Online Registration does not guarantee approval of your participation - if your application is approved you will be contacted within 3 working days to confirm your booking and proceed to the next step.</span>
+                            <span class='AR_Text'>لا يضمن التسجيل عبر الإنترنت الموافقة على مشاركتك - إذا تمت الموافقة على طلبك ، فسيتم الاتصال بك في غضون 3 أيام عمل لتأكيد حجزك والانتقال إلى الخطوة التالية.</span>
+                        </li>
+                        <li>
+                            <span class='EN_Text'>100% down payment is required for reservation</span>
+                            <span class='AR_Text'>يشترط دفع 100٪ من المبلغ مقدما للحجز</span>
+                        </li>
+
+                        
+
+                        <li>
+                            <span class='EN_Text'>In case of booking two or more connected booths with different rates - price will be calculated on the higher rate for the entire space</span>
+                            <span class='AR_Text'>في حال حجز عدة مواقع متصلة بأسعار مختلفة للمتر المربع - يتم احتساب جميع المساحات على السعر الأعلى</span>
+                        </li>
+                        
+                    </ul>
+                </v-alert> 
+            </v-card-subtitle>
+           
+            <booths-plan    img="images/ixir25-plan.svg"    :lang="exform.language" :currentchoices="exform[currentchoices]" :booths="currentFloorBooths"></booths-plan> 
+                
+            </v-card>
+    </v-col> 
+</v-row>

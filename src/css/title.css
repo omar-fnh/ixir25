@@ -1,0 +1,18 @@
+
+.pageTitle {
+    text-align:center;
+    margin:15px;
+  }
+
+  .pageTitle  div{ 
+    display: inline-block;
+    border: 1px groove #057150
+    border-radius: 4px;
+    padding: 10px;
+    color: #fff;
+    background-color: #057150;
+  }
+
+
+
+  
