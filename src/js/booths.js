@@ -12,21 +12,23 @@ function getDataFromSpreadsheet(SpreadSheetURL,callbackfn){
               if  (row!==rows[0])
               {
                 for(const key in row) {
+
+                  formattedRow["hall"] ="Ground";
                   if(key=="0"){formattedRow["reserved"] = (row[key]=="TRUE")?true:false;};
                   if(key=="1"){formattedRow["online"] =  (row[key]=="TRUE")?true:false;};
                    if(key=="2"){formattedRow["id"] = row[key]};
-                   if(key=="3"){formattedRow["type"] = row[key]};
-                   
-                   if(key=="5"){formattedRow["width"] = row[key]};
-                   if(key=="6"){formattedRow["height"] = row[key]};
-                   if(key=="7"){formattedRow["company"] = row[key]};
+                   if(key=="4"){formattedRow["type"] = row[key]};
+                   if(key=="5"){formattedRow["Btype"] = row[key]};                
+                   if(key=="6"){formattedRow["width"] = row[key]};
+                   if(key=="7"){formattedRow["height"] = row[key]};
+                   if(key=="8"){formattedRow["company"] = row[key]};
 
-                   if(key=="9"){formattedRow["category"] = row[key]};
-                   if(key=="10"){formattedRow["link"] = row[key]};
-                   if(key=="11"){formattedRow["image"] = row[key]};
+                   if(key=="4"){formattedRow["category"] = row[key]};
+                   if(key=="11"){formattedRow["link"] = row[key]};
+                   if(key=="12"){formattedRow["image"] = row[key]};
 
-                   if(key=="14"){formattedRow["path"] = row[key]};
-
+                   if(key=="15"){formattedRow["path"] = row[key]};
+                   if(key=="16"){formattedRow["paths_group"] = row[key]};
                                       }                        
                  data.push(formattedRow)
                }

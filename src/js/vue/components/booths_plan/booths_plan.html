@@ -55,9 +55,9 @@
                               
                                 <v-img v-if="selected_booth.company!='' && selected_booth.online" :src="'images/logos/'+selected_booth.image" style="width:120px;height:120px;margin:auto;" class="justify-center"></v-img>
                                 <div   style="font-family:roboto;font-weight:bold;font-size:120%"  >{{boothName(selected_booth).name}} </div>
-                                <div  v-if="selected_booth.company!='' && selected_booth.online "  style="font-family:roboto;font-weight:bold;font-size:120%"  ><a target="_blank" :href="'https://instagram.com/'+selected_booth.link">{{selected_booth.company}}</a></div>
+                                <div  v-if="selected_booth.company!='' && selected_booth.online "  style="text:#565656;font-family:roboto;font-weight:bold;font-size:120%"  ><a target="_blank" :href="'https://instagram.com/'+selected_booth.link">{{selected_booth.company}}</a></div>
     
-                                <v-chip  v-if="selected_booth.company=='' || selected_booth.online==false" style="font-family:roboto;font-weight:bold" outlined :color="categoryColor" small>{{selected_booth.category}}</v-chip>
+                                <v-chip  v-if="selected_booth.company=='' || selected_booth.online==false" style="font-family:roboto;font-weight:bold" outlined :color="categoryColor" small>{{selected_booth.type}}</v-chip>
                             </v-col>
                             <v-col class="justify-center" style="text-align:center" v-if="selected_booth.company==''">
             

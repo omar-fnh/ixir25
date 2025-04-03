@@ -73,13 +73,15 @@ Vue.component('booths-plan', {
     computed: {
 zoomValue(){return this.zoom.value},
 categoryColor(){
-if(this.selected_booth.category=="Standard"){return"#e1d3b1"}
-if(this.selected_booth.category=="F&B"){return"rgb(245, 205, 224)"}
-if(this.selected_booth.category=="Prime"){return"rgb(168, 221, 234)"}
-if(this.selected_booth.category=="Partner"){return"rgb(181, 212, 157)"}
-if(this.selected_booth.category=="Sponsor"){return"rgb(30, 75, 129)"}
+  /*
+if(this.selected_booth.type=="Standard"){return"#d8cfc5"}
+if(this.selected_booth.type=="F&B"){return"rgb(245, 205, 224)"}
+if(this.selected_booth.type=="Prime"){return"#45c7f4"}
+if(this.selected_booth.type=="Partner"){return"#ffc906"}
+if(this.selected_booth.type=="Sponsor"){return"rgb(30, 75, 129)"}
+*/
 
-return "white";
+return "#047150";
 }
     },
     
@@ -252,14 +254,17 @@ return "white";
         
         
               },
-      boothName(item){
-        
-        var the_name="";
-        if( item.hall=="Ground" ){the_name+="G"}else {the_name+="M";}
-        if(item.id){the_name+=" - "+item.id}else { the_name+=Math.random()}
+              boothName(item){
+                var the_name="";
+                if( item.hall=="Ground" ){the_name+="H8"}
+                the_name+=" - ";
+                if(item.type=="F&B"){the_name=""}
+                //else if (item.hall=="Mezzanine"){the_name+="M"}
 
-        return {id:item.id,hall:item.hall,name:the_name};
-      },
+                if(item.id){the_name+=item.id}else { the_name+=Math.random()}
+        
+                return {id:item.id,hall:item.hall,name:the_name};
+              },
     },
 
 

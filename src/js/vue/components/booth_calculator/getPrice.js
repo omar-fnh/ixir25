@@ -1,4 +1,5 @@
 getPrice(_booth,withCommas){
+  console.log('getPrice',_booth);
    
  const  numberWithCommas= function(x) {return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}  
 var price;
@@ -21,3 +22,4 @@ if( _booth.category.toLowerCase().includes("sponsor")  ){return null}
 return  withCommas?numberWithCommas(price):price;
 
   },
+

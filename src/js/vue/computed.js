@@ -43,7 +43,7 @@ return  this.booths.filter(removeotherfloorbooth);
 availbleBooths:function (){
    
 //removereservedbooth=(item) =>{ if (item.reserved==0 && this.showPlan==item.hall ){ return true } else {return false} }
-removereservedbooth=(item) =>{ if (item.reserved==0 && item.hall=="Ground" ){ return this.exform.prebooked?false:true } else {return this.exform.prebooked?true:false} }
+removereservedbooth=(item) =>{ if (item.reserved==0  ){ return this.exform.prebooked?false:true } else {return this.exform.prebooked?true:false} }
 
 return  this.booths.filter(removereservedbooth);
 

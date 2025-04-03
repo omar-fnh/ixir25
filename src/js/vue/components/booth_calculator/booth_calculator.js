@@ -71,12 +71,13 @@ Vue.component('booth-calculator', {
               //=include total_price.js
         
               boothName(item){
-        
                 var the_name="";
-                if( item.hall=="Ground" ){the_name+="G"}
-                else if (item.hall=="Mezzanine"){the_name+="M"}
+                if( item.hall=="Ground" ){the_name+="H8"}
+                the_name+=" - ";
+                if(item.type=="F&B"){the_name=""}
+                //else if (item.hall=="Mezzanine"){the_name+="M"}
 
-                if(item.id){the_name+=" - "+item.id}else { the_name+=Math.random()}
+                if(item.id){the_name+=item.id}else { the_name+=Math.random()}
         
                 return {id:item.id,hall:item.hall,name:the_name};
               },
