@@ -248,8 +248,7 @@ return "#047150";
      
      
       ShellOrSpace(_booth){
-        console.log(_booth.type.toLowerCase());
-        if(_booth.type.toLowerCase().includes('space only')==false ){return "SHELL SCHEME BOOTH"}
+        if(_booth.Btype.toLowerCase().includes('space only')==false ){return "SHELL SCHEME BOOTH"}
         else{ return "SPACE ONLY BOOTH"}
         
         

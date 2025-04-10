@@ -1,61 +1,47 @@
 <v-row v-if="exform.language=='en'">
-<v-col cols="12" id="selectCategories">
-  <v-combobox  :rules="rules.categories"
-      v-model="exform.industry"
-      :items="categories"
-      outlined
-      chips
-      :label="exform.language=='en'?'Select the Industry your company falls under':'حدد التصنيف التي تندرج تحتها شركتك'"
-      item-text="name"
-      item-value="value"
-      multiple
-    >
-      <template v-slot:selection="data">
-        <v-chip v-bind="data.attrs" color="primary"   :input-value="data.selected" close
-          @click="data.select" @click:close="removeCategorie(data.item)">
-            <v-avatar left v-if="typeof data.item=='object'"><v-icon >{{ data.item.icon }} </v-icon>          </v-avatar>
-              <div v-if="typeof data.item=='object'">
+  <v-col cols="12" id="selectCategories">
+    <v-combobox  :rules="rules.categories"
+        v-model="exform.industry"
+        :items="categories"
+        outlined
+        chips
+        :label="exform.language=='en'?'Select the Industry your company falls under':'حدد التصنيف التي تندرج تحتها شركتك'"
+        item-text="name"
+        item-value="value"
+        multiple
+      >
+        <template v-slot:selection="data">
+          <v-chip v-bind="data.attrs" color="secondary"  outlined :input-value="data.selected" close
+            @click="data.select" @click:close="removeCategorie(data.item)">
+              <v-avatar left v-if="typeof data.item=='object'"><img    :src="'images/categories/'+data.item.img" />           </v-avatar>
+                <div v-if="typeof data.item=='object'">
 
-                  <span  v-if="data.item.fullTitle" style="font-size:80%">
-                    <span class='EN_Text'>{{data.item.group}} &nbsp;|&nbsp;</span>
-                  </span>
-
-                  <span  v-if="data.item.fullTitle_ar" style="font-size:100%">
-                    <span class='AR_Text'>{{data.item.group_ar}} &nbsp;|&nbsp;</span>
-                  </span>
-
-                  <span style="font-weight:bold">
-                    <span class='EN_Text'>{{data.item.name}}</span>
-                    <span class='AR_Text'>{{data.item.name_ar}}</span>
-                  </span>
-              </div>
-              <span v-if="typeof data.item=='string'">{{ data.item }}</span>
-        </v-chip>
-      </template>
-
-      <template v-slot:item="data" >
-        <template v-if="typeof data.item !== 'object' " >
-          <v-list-item-content v-text='data.item' ></v-list-item-content>
+                    <span style="font-weight:bold">
+                      <span class='EN_Text'>{{data.item.name}}</span>
+                      <span class='AR_Text'>{{data.item.name_ar}}</span>
+                    </span>
+                </div>
+                <span v-if="typeof data.item=='string'">{{ data.item }}</span>
+          </v-chip>
         </template>
-        <template v-else>
-          <v-list-item-avatar>
-            <v-icon >{{ data.item.icon }}</v-icon>
-          </v-list-item-avatar>
-          <v-list-item-content >
-            <v-list-item-title style="font-size:80%" >
-              <span class='EN_Text'>{{data.item.name}}</span>
-              <span class='AR_Text'>{{data.item.name_ar}}</span>
-            </v-list-item-title>
-          </v-list-item-content>
+
+        <template v-slot:item="data" >
+          <template v-if="typeof data.item !== 'object' " >
+            <v-list-item-content v-text='data.item' ></v-list-item-content>
+          </template>
+          <template v-else>
+            <v-list-item-avatar>
+              <img    :src="'images/categories/'+data.item.img" /> 
+            </v-list-item-avatar>
+            <v-list-item-content >
+              <v-list-item-title style="font-size:80%;;margin:5px" >
+                <span class='EN_Text'>{{data.item.name}}</span>
+                <span class='AR_Text'>{{data.item.name_ar}}</span>
+              </v-list-item-title>
+            </v-list-item-content>
+          </template>
         </template>
-      </template>
-
-
-
-
-
-
-    </v-combobox>
+      </v-combobox>
   </v-col>
 </v-row>
 
@@ -68,7 +54,7 @@
   <v-col cols="12" id="selectCategories">
     <v-combobox  :rules="rules.categories"
         v-model="exform.industry"
-        :items="categories_ar"
+        :items="categories"
         outlined
         chips
         :label="exform.language=='en'?'Select the Industry your company falls under':'حدد التصنيف التي تندرج تحتها شركتك'"
@@ -77,27 +63,19 @@
         multiple
       >
         <template v-slot:selection="data">
-          <v-chip v-bind="data.attrs" color="primary"   :input-value="data.selected" close
+          <v-chip v-bind="data.attrs" color="secondary" outlined  :input-value="data.selected" close
             @click="data.select" @click:close="removeCategorie(data.item)">
-              <v-avatar left v-if="typeof data.item=='object'"><v-icon >{{ data.item.icon }} </v-icon>          </v-avatar>
-                <div v-if="typeof data.item=='object'">
+            <v-avatar left v-if="typeof data.item=='object'"><img    :src="'images/categories/'+data.item.img" />           </v-avatar>
+            <div v-if="typeof data.item=='object'">
   
-                    <span  v-if="data.item.fullTitle" style="font-size:80%">
-                      <span class='EN_Text'>{{data.item.group}} &nbsp;|&nbsp;</span>
-                    </span>
-  
-                    <span  v-if="data.item.fullTitle_ar" style="font-size:100%">
-                      <span class='AR_Text'>{{data.item.group_ar}} &nbsp;|&nbsp;</span>
-                    </span>
-  
-                    <span style="font-weight:bold">
-                      <span class='EN_Text'>{{data.item.name}}</span>
-                      <span class='AR_Text'>{{data.item.name_ar}}</span>
-                    </span>
-                </div>
-                <span v-if="typeof data.item=='string'">{{ data.item }}</span>
-          </v-chip>
-        </template>
+              <span style="font-weight:bold">
+                <span class='EN_Text'>{{data.item.name}}</span>
+                <span class='AR_Text'>{{data.item.name_ar}}</span>
+              </span>
+          </div>
+          <span v-if="typeof data.item=='string'">{{ data.item }}</span>
+    </v-chip>
+  </template>
   
         <template v-slot:item="data" >
           <template v-if="typeof data.item !== 'object' " >
@@ -105,10 +83,10 @@
           </template>
           <template v-else>
             <v-list-item-avatar>
-              <v-icon >{{ data.item.icon }}</v-icon>
+              <img    :src="'images/categories/'+data.item.img" /> 
             </v-list-item-avatar>
             <v-list-item-content >
-              <v-list-item-title style="font-size:80%" >
+              <v-list-item-title style="font-size:80%;;margin:5px" >
                 <span class='EN_Text'>{{data.item.name}}</span>
                 <span class='AR_Text'>{{data.item.name_ar}}</span>
               </v-list-item-title>
@@ -118,7 +96,9 @@
   
   
   
-
+  
+  
+  
       </v-combobox>
     </v-col>
   </v-row>
