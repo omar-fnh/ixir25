@@ -64,8 +64,8 @@
 						</v-row>
 						<v-row  style="flex-direction:column">
 							<div style="align-self: center;background-color: #057150;padding: 2px 10px;color: white;font-weight: bold;border-radius: 4px;">
-								<span class='EN_Text'>MAY 22<sup>TH</sup> – 24<sup>TH</sup> 2025</span>
-								<span class='AR_Text' style="font-size:120%"> 22 - 24 مايو  2025</span>
+								<span class='EN_Text'>OCT 9<sup>TH</sup> – 11<sup>TH</sup> 2025</span>
+								<span class='AR_Text' style="font-size:120%"> 9 - 11 أكتوبر  2025</span>
 							</div>
 						</v-row>
 
