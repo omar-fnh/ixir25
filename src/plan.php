@@ -20,7 +20,7 @@
 	  <link href="css/main.css" rel="stylesheet">
 	<meta charset="utf-8"/>
 	<style>
-
+.v-card__actions{display:none!important}
 .x_in_Booth {
   stroke: rgb(231, 103, 120)!important;
   stroke-width: 2px!important;
